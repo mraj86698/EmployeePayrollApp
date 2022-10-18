@@ -2,6 +2,16 @@ package com.example.demo.Model;
 
 import com.example.demo.Dto.EmployeePayrollDto;
 
+import lombok.Data;
+
+/**
+ * Using @Data is equivalent to using @code @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode
+ * Generates getters for all fields, a useful toString method, and hashCode and equals implementations that check all non-transient fields.
+ * @author mraj
+ *
+ */
+
+@Data
 public class EmployeePayrollData {
 
     private int empId;
@@ -16,7 +26,10 @@ public class EmployeePayrollData {
 
     public EmployeePayrollData(String empName, long salary) {
     }
-
+    /**
+     * Employee Payroll Data Getter And Setter Method
+     * @return
+     */
     public long getEmpId() {
         return empId;
     }
