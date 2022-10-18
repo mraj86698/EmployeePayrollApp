@@ -13,61 +13,55 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Dto.EmployeePayrollDto;
 
+
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/EmployeePayroll")
 public class EmployeePayrollController {
-	@RequestMapping(value = { "", "/", "/get" })
-	public ResponseEntity<String> getEmployeePayrollData() {
 
-		return new ResponseEntity<String>("Get Call Success For", HttpStatus.OK);
 
-	}
-	/**
-	 * Testing for Get Mapping using client Url
-	 * @param empId
-	 * @return
-	 */
-	@GetMapping("/get/{empId}")
-	public ResponseEntity<String> getEmployeePayrollData(@PathVariable("empId") int empId) {
+    @RequestMapping(value = {"", "/", "/get"})
+    public ResponseEntity<ResponseDto> getEmployeePayrollData()
+    {
+        EmployeePayrollData empData = null;
+        empData = new EmployeePayrollData(1, new EmployeePayrollDto("Mohan", 30000));
+        ResponseDto respDTO = new ResponseDto("Get Call Success", empData);
+        return new ResponseEntity<ResponseDto> (respDTO, HttpStatus.OK);
+    }
 
-		return new ResponseEntity<String>("Get Call Success For ID" + empId, HttpStatus.OK);
 
-	}
-	/**
-	 * Testing for PostMapping using client Url
-	 * @param employeePayrollDto
-	 * @return
-	 */
+    @GetMapping("/get/{empId}")
+    public ResponseEntity<ResponseDto> getEmployeePayrollData(@PathVariable("empId") int empId)
+    {
+        EmployeePayrollData employeePayrollData = null;
+        employeePayrollData = new EmployeePayrollData(1, new EmployeePayrollDto("Mohan", 30000));
+        ResponseDto respDTO = new ResponseDto("Get Call Success", employeePayrollData);
+        return new ResponseEntity<ResponseDto> (respDTO, HttpStatus.OK);
+    }
 
-	@PostMapping("/create")
-	public ResponseEntity<String> addEmployeePayrollData(@RequestBody EmployeePayrollDto employeePayrollDto) {
+    @PostMapping("/create")
+    public ResponseEntity<ResponseDto> addEmployeePayrollData(@RequestBody EmployeePayrollDto empPayrollDto)
+    {
+        EmployeePayrollData employeePayrollData = null;
+        employeePayrollData = new EmployeePayrollData(1, empPayrollDto);
+        ResponseDto respDTO = new ResponseDto("Created Employee Payroll Data Successfuly ", employeePayrollData);
+        return new ResponseEntity<ResponseDto> (respDTO, HttpStatus.OK);
+    }
 
-		return new ResponseEntity<String>("Created Employee Payroll Data for" + employeePayrollDto, HttpStatus.OK);
-	}
-	/**
-	 * Testing for Put Mapping Using Client Url
-	 * @param empId
-	 * @param empPayrollDto
-	 * @return
-	 */
 
-	@PutMapping("/update/{empId}")
-	public ResponseEntity<String> updateEmployeePayroll(@PathVariable("empId") int empId,
-			@RequestBody EmployeePayrollDto empPayrollDto) {
+    @PutMapping(path = "/update/{empId}")
+    public ResponseEntity<ResponseDto> updateEmployeePayrollData(@PathVariable("empId") int empId,
+                                                                 @RequestBody EmployeePayrollDto empPayrollDTO)
+    {
+        EmployeePayrollData employeePayrollData = null;
+        employeePayrollData = new EmployeePayrollData(empId, empPayrollDTO);
+        ResponseDto respDTO = new ResponseDto("Updated Employee payroll Data for: ", employeePayrollData);
+        return new ResponseEntity<ResponseDto> (respDTO, HttpStatus.OK);
+    }
 
-		return new ResponseEntity<String>("Updated Employee PayrollData for:" + empPayrollDto, HttpStatus.OK);
-	}
-
-	/**
-	 * Testing for Delete Mapping Using Client Url
-	 * @param empId
-	 * @return
-	 */
-	@DeleteMapping("/delete/{empId}")
-	public ResponseEntity<String> deleteEmployeePayrollData(@PathVariable("empId") int empId) {
-
-		return new ResponseEntity<String>("Delete Call Success for id:" + empId, HttpStatus.OK);
-
-	}
-
+    @DeleteMapping("/delete/{empId}")
+    public ResponseEntity<ResponseDto> deleteEmployeePayrollData(@PathVariable("empId") int empId)
+    {
+        ResponseDto respDTO = new ResponseDto("Deleted SuccessFully","Deleted Id"+	 empId);
+        return new ResponseEntity<ResponseDto> (respDTO, HttpStatus.OK);
+    }
 }
