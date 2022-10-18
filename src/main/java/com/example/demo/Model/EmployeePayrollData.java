@@ -3,11 +3,12 @@ package com.example.demo.Model;
 import com.example.demo.Dto.EmployeePayrollDto;
 
 public class EmployeePayrollData {
-	private long empId;
+
+    private int empId;
     private String empName;
     private long salary;
 
-    public EmployeePayrollData(long empId, EmployeePayrollDto employeePayrollDto) {
+    public EmployeePayrollData(int empId, EmployeePayrollDto employeePayrollDto) {
         this.empId = empId;
         this.empName = employeePayrollDto.empName;
         this.salary = employeePayrollDto.salary;
@@ -20,7 +21,7 @@ public class EmployeePayrollData {
         return empId;
     }
 
-    public void setEmpId(long empId) {
+    public void setEmpId(int empId) {
         this.empId = empId;
     }
 
@@ -39,5 +40,4 @@ public class EmployeePayrollData {
     public void setSalary(long salary) {
         this.salary = salary;
     }
-
 }
