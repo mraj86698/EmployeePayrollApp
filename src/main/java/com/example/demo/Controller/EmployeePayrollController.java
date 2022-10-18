@@ -15,16 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Dto.EmployeePayrollDto;
-import com.example.demo.Dto.ResponseDto;
-import com.example.demo.Model.EmployeePayrollData;
-import com.example.demo.Service.IEmployeePayrollService;
+
 
 @RestController
 @RequestMapping("/EmployeePayroll")
 public class EmployeePayrollController {
 
-	@Autowired
-    private IEmployeePayrollService employeePayrollService;
+
 
     @RequestMapping(value = {"", "/", "/get"})
     public ResponseEntity<ResponseDto> getEmployeePayrollData()
