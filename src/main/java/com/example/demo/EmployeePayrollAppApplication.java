@@ -10,5 +10,4 @@ public class EmployeePayrollAppApplication {
 		SpringApplication.run(EmployeePayrollAppApplication.class, args);
 		System.out.println("Welcome to EmployeePayroll APP");
 	}
-
 }
