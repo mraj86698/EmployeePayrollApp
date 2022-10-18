@@ -12,12 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Dto.EmployeePayrollDto;
-import com.example.demo.Dto.ResponseDto;
-import com.example.demo.Model.EmployeePayrollData;
+
 
 @RestController
 @RequestMapping("/EmployeePayroll")
 public class EmployeePayrollController {
+
 
     @RequestMapping(value = {"", "/", "/get"})
     public ResponseEntity<ResponseDto> getEmployeePayrollData()
