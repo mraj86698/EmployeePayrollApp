@@ -3,6 +3,8 @@ package com.example.demo.Model;
 import com.example.demo.Dto.EmployeePayrollDto;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Using @Data is equivalent to using @code @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode
@@ -12,6 +14,8 @@ import lombok.Data;
  */
 
 @Data
+@Getter
+@Setter
 public class EmployeePayrollData {
 
     private int empId;
@@ -26,31 +30,5 @@ public class EmployeePayrollData {
 
     public EmployeePayrollData(String empName, long salary) {
     }
-    /**
-     * Employee Payroll Data Getter And Setter Method
-     * @return
-     */
-    public long getEmpId() {
-        return empId;
-    }
 
-    public void setEmpId(int empId) {
-        this.empId = empId;
-    }
-
-    public String getEmpName() {
-        return empName;
-    }
-
-    public void setEmpName(String empName) {
-        this.empName = empName;
-    }
-
-    public double getSalary() {
-        return salary;
-    }
-
-    public void setSalary(long salary) {
-        this.salary = salary;
-    }
 }
