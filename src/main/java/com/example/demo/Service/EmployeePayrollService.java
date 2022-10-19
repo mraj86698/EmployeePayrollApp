@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Dto.EmployeePayrollDto;
+import com.example.demo.Exception.EmployeePayrollException;
 import com.example.demo.Model.EmployeePayrollData;
 
 @Service
@@ -17,11 +18,19 @@ public class EmployeePayrollService implements IEmployeePayrollService{
 
 		return empList;
 	}
-
+	/**
+	 * To Get Particular Employee Data
+	 * Defining  a Custom Exception for Employee Not Found and through when Employee Id is passed as parameter.
+	 * Handle such Exceptions in @ExceptionHandler method for EmployeeNotException class.
+	 */
 	@Override
 	public EmployeePayrollData getEmployeePayrollDataByID(int empId) {
 
-		return empList.get(empId - 1);
+		 return empList.stream()
+	                .filter(empData -> empData.getEmpId() == empId)
+	                .findFirst()
+	                .orElseThrow(() -> new EmployeePayrollException("Employee Not Found"));
+
 	}
 
 	@Override
