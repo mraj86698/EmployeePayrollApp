@@ -11,10 +11,9 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
-import org.springframework.format.annotation.DateTimeFormat;
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
-import lombok.ToString;
 
 /**
  * Using @Data is equivalent to
@@ -23,8 +22,7 @@ import lombok.ToString;
  * equals implementations that check all non-transient fields.
  */
 @Data
-@ToString
-public class EmployeePayrollDto {
+public  class EmployeePayrollDto {
 
 
 	/**
@@ -49,7 +47,7 @@ public class EmployeePayrollDto {
 	 * Validation for Gender
 	 * Gender pattern is taken eithers as male or female
 	 */
-	@Pattern(regexp = "male|female|others", message = "Gender Needs to be Male,Female or Others")
+	@Pattern(regexp = "Male|Female|Others", message = "Gender Needs to be Male,Female or Others")
 	private String gender;
 	/**
 	 * Validation for JoinDate
@@ -57,10 +55,10 @@ public class EmployeePayrollDto {
 	 * Pattern fails the Exception is handled in the Exception Handler`
 	 * Date is also required and Not Null
 	 */
-	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@JsonFormat(pattern = "dd MM yyyy")
 	@NotNull(message = "startDate should Not be Empty")
 	@PastOrPresent(message = "startDate should be past or today date")
-	public LocalDate startDate;
+	private LocalDate startDate;
 	/**
 	 * Validation for Note
 	 * Note is set as required field by using @NotBlank annotation
@@ -78,8 +76,9 @@ public class EmployeePayrollDto {
 	 * Validation for Department
 	 * Department is set to Not Null Validation and the array is converted to List automatically
 	 */
-	@NotNull(message = "department should not be Empty")
+	@NotEmpty(message = "department should not be Empty")
 	private List<String> department;
+
 
 
 }
