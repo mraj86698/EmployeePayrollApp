@@ -1,5 +1,8 @@
 package com.example.demo.Model;
 
+import java.util.Date;
+import java.util.List;
+
 import com.example.demo.Dto.EmployeePayrollDto;
 
 import lombok.Data;
@@ -21,14 +24,26 @@ public class EmployeePayrollData {
     private int empId;
     private String empName;
     private long salary;
+    private String gender;
+    private Date startDate;
+    private String note;
+    private String profilePic;
+    private List<String> department;
 
-    public EmployeePayrollData(int empId, EmployeePayrollDto employeePayrollDto) {
+    public EmployeePayrollData(int empId, EmployeePayrollDto EmployeePayrollDto) {
         this.empId = empId;
-        this.empName = employeePayrollDto.empName;
-        this.salary = employeePayrollDto.salary;
+        this.empName = EmployeePayrollDto.empName;
+        this.salary = EmployeePayrollDto.salary;
+        this.gender = EmployeePayrollDto.getGender();
+        this.startDate = EmployeePayrollDto.getStartDate();
+        this.note = EmployeePayrollDto.getNote();
+        this.profilePic = EmployeePayrollDto.getProfilePic();
+        this.department = EmployeePayrollDto.getDepartment();
+    }
+    public EmployeePayrollData() {
+
     }
 
-    public EmployeePayrollData(String empName, long salary) {
-    }
+
 
 }
