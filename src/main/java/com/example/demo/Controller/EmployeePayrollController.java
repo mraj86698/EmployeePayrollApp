@@ -17,14 +17,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Dto.EmployeePayrollDto;
-import com.example.demo.Dto.ResponseDto;
-import com.example.demo.Model.EmployeePayrollData;
-import com.example.demo.Service.IEmployeePayrollService;
+
 
 @RestController
 @RequestMapping("/EmployeePayroll")
 public class EmployeePayrollController {
 
+UC2.3-ServiceLayerToStoreTheEmployeePayrollData
 	@Autowired
     private IEmployeePayrollService employeePayrollService;
 	/**
@@ -32,6 +31,11 @@ public class EmployeePayrollController {
 	 * @return
 	 */
     @RequestMapping(value = {"", "/", "/getAll"})
+=======
+
+
+  
+
     public ResponseEntity<ResponseDto> getEmployeePayrollData()
     {
         List<EmployeePayrollData> empDataList = null;

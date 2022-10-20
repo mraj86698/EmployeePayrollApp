@@ -24,12 +24,17 @@ import lombok.Data;
 @Data
 public  class EmployeePayrollDto {
 
+
 	/**
 	 * Validation for Employee Name
 	 * @NotEmpty annotation is added to name property -Note that the message is thrown when the "Employee name is invalid"
 	 */
+=======
+
 	@NotEmpty(message = "Employee name cannot be empty")
 	@Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Employee name Invalid")
+
+
 	public String empName;
 	/**
 	 * Validation for Employee Salary
