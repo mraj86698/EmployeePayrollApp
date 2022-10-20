@@ -21,8 +21,11 @@ import lombok.ToString;
 @ToString
 public class EmployeePayrollDto {
 
+
 	@NotEmpty(message = "Employee name cannot be empty")
 	@Pattern(regexp = "^[A-Z]{1}[a-zA-Z\\s]{2,}$", message = "Employee name Invalid")
+
+
 	public String empName;
 	@Min(value = 500, message = "Salary should be more than 500")
 	@Max(value = 900000, message = "Salary should not exceeds 900000")
@@ -32,6 +35,7 @@ public class EmployeePayrollDto {
 	private String note;
 	private String profilePic;
 	private List<String> department;
+
 
 
 
