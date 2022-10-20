@@ -1,6 +1,6 @@
 package com.example.demo.Dto;
 
-import java.util.Date;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.validation.constraints.Max;
@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PastOrPresent;
 import javax.validation.constraints.Pattern;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Data;
 import lombok.ToString;
@@ -29,6 +29,7 @@ public class EmployeePayrollDto {
 
 	/**
 	 * Validation for Employee Name
+	 * @NotEmpty annotation is added to name property -Note that the message is thrown when the "Employee name is invalid"
 	 */
 =======
 
@@ -39,6 +40,7 @@ public class EmployeePayrollDto {
 	public String empName;
 	/**
 	 * Validation for Employee Salary
+	 * @Min annotation for Salary and corresponding error message
 	 */
 	@Min(value = 500, message = "Salary should be more than 500")
 	@Max(value = 900000, message = "Salary should not exceeds 900000")
@@ -52,13 +54,13 @@ public class EmployeePayrollDto {
 	/**
 	 * Validation for JoinDate
 	 * Date is converted to LocalDate using @JsonFormat annotation with pattern.
-	 * Pattern fails the Exception is handled in the Exception Handler
+	 * Pattern fails the Exception is handled in the Exception Handler`
 	 * Date is also required and Not Null
 	 */
-	@JsonFormat(pattern = "dd MM yyyy")
-	@NotNull(message = "startDate Should not be Empty")
-	@PastOrPresent(message = "startDate Should not be past or present Date")
-	private Date startDate;
+	@DateTimeFormat(pattern = "dd/MM/yyyy")
+	@NotNull(message = "startDate should Not be Empty")
+	@PastOrPresent(message = "startDate should be past or today date")
+	public LocalDate startDate;
 	/**
 	 * Validation for Note
 	 * Note is set as required field by using @NotBlank annotation
