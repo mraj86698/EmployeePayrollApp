@@ -21,6 +21,18 @@ import lombok.extern.slf4j.Slf4j;
 @ControllerAdvice
 @Slf4j
 public class EmployeePayrollHandlerException {
+
+	/**
+	  * Exception Handler for Incorrect Date Format
+	  */
+	 private static  final String message = "Exception while Prosessing REST Request";
+	    @ExceptionHandler(HttpMessageNotReadableException.class)
+	    public ResponseEntity<ResponseDto> handleHttpMessageNotReadableException(HttpMessageNotReadableException exception){
+	        log.error("Invalid Date Format",exception);
+	        ResponseDto responseDTO = new ResponseDto(message,"Should have date in the Format of dd MMM yyyy");
+	        return new ResponseEntity<ResponseDto>(responseDTO, HttpStatus.BAD_REQUEST);
+	    }
+
 	/**
 	 * To handle Validation Errors create @ExceptionHandler method for MethodArgumentNotValidException class is defined.
 	 * @param exception
@@ -39,15 +51,6 @@ public class EmployeePayrollHandlerException {
 	        ResponseDto responseDTO = new ResponseDto("Exception while processing REST Request", exception.getMessage());
 	        return new ResponseEntity<>(responseDTO, HttpStatus.BAD_REQUEST);
 	    }
-	 /**
-	  * Exception Handler for Incorrect Date Format
-	  */
-	 private static  final String message = "Exception while Prosessing REST Request";
-	    @ExceptionHandler(HttpMessageNotReadableException.class)
-	    public ResponseEntity<ResponseDto> handleHttpMessageNotReadableException(HttpMessageNotReadableException exception){
-	        log.error("Invalid Date Format",exception);
-	        ResponseDto responseDTO = new ResponseDto(message,"Should have date in the Format of dd MMM yyyy");
-	        return new ResponseEntity<ResponseDto>(responseDTO, HttpStatus.BAD_REQUEST);
-	    }
+
 
 }

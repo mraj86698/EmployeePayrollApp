@@ -16,8 +16,7 @@ import javax.persistence.Table;
 import com.example.demo.Dto.EmployeePayrollDto;
 
 import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.NoArgsConstructor;
 
 /**
  * Using @Data is equivalent to using @code @Getter @Setter @RequiredArgsConstructor @ToString @EqualsAndHashCode
@@ -27,8 +26,7 @@ import lombok.Setter;
  */
 
 @Data
-@Getter
-@Setter
+@NoArgsConstructor
 /**
  * @Entity Annotation tells Hibernate to create a table out of the Employee Payroll Class
  */
@@ -62,23 +60,26 @@ public class EmployeePayrollData {
      * @JoinColumn that refers to the primary table.
      */
     @ElementCollection
-    @CollectionTable(name="employee_department",joinColumns=@JoinColumn(name="id"))
-    @Column(name="department")
+    @CollectionTable(name = "employee_department",joinColumns = @JoinColumn(name = "id"))
+    @Column(name = "department")
     private List<String> department;
 
-    public EmployeePayrollData(int empId, EmployeePayrollDto EmployeePayrollDto) {
-        this.empId = empId;
-        this.empName = EmployeePayrollDto.empName;
-        this.salary = EmployeePayrollDto.salary;
-        this.gender = EmployeePayrollDto.getGender();
-        this.startDate = EmployeePayrollDto.getStartDate();
-        this.note = EmployeePayrollDto.getNote();
-        this.profilePic = EmployeePayrollDto.getProfilePic();
-        this.department = EmployeePayrollDto.getDepartment();
-    }
-    public EmployeePayrollData() {
+    public EmployeePayrollData(EmployeePayrollDto empPayrollDto) {
+    	this.updateEmployeePayrollData(empPayrollDto);
 
     }
+
+	public void updateEmployeePayrollData(EmployeePayrollDto employeePayrollDto) {
+			this.empId = empId;
+	        this.empName = employeePayrollDto.getEmpName();
+	        this.salary = employeePayrollDto.getSalary();
+	        this.gender = employeePayrollDto.getGender();
+	        this.startDate = employeePayrollDto.getStartDate();
+	        this.note = employeePayrollDto.getNote();
+	        this.profilePic = employeePayrollDto.getProfilePic();
+	        this.department = employeePayrollDto.getDepartment();
+
+	}
 
 
 
