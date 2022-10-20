@@ -99,4 +99,17 @@ UC2.3-ServiceLayerToStoreTheEmployeePayrollData
         ResponseDto respDTO = new ResponseDto("Deleted Employee Data ", empId);
         return new ResponseEntity<ResponseDto> (respDTO, HttpStatus.OK);
     }
+    /**
+     *
+     * @param department
+     * @return
+     */
+    @GetMapping("/getByDept/{department}")
+    public ResponseEntity<ResponseDto> getEmployeePayrollData(@PathVariable("department")String department){
+        List<EmployeePayrollData> employeePayrollDataList = null;
+        employeePayrollDataList = employeePayrollService.getEmployeePayrollDataByDepartment(department);
+        ResponseDto responseDTO = new ResponseDto("Get Call For ID Success",employeePayrollDataList);
+        return new ResponseEntity<ResponseDto>(responseDTO,HttpStatus.OK);
+
+    }
 }
